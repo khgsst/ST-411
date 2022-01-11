@@ -1,0 +1,12 @@
+HW5Dat <- read.csv("legs.csv")
+qplot(Diet, Weight, data=HW5Dat, geom="boxplot",ylab="Weight (g)") + 
+  stat_summary(fun=mean, geom="point", shape=3, size=3)
+sdbc <- with(HW5Dat, sd(Weight[Diet=="BC"]))
+sdbcm <- with(HW5Dat, sd(Weight[Diet=="BCM"]))
+sdbs <- with(HW5Dat, sd(Weight[Diet=="BS"]))
+sdbsm <- with(HW5Dat, sd(Weight[Diet=="BSM"]))
+(HW5Dat_aov <- aov(Weight~Diet, data=HW5Dat))
+anova(HW5Dat_aov)
+with(HW5Dat, unlist(lapply(split(Weight, Diet), mean)))
+with(HW5Dat, unlist(lapply(split(Weight, Diet), length)))
+c(107.2903-93.9625-qt(0.975,110)*sqrt(295.06)*sqrt(1/29+1/28),107.2903-93.9625+qt(0.975,110)*sqrt(295.06)*sqrt(1/29+1/28))

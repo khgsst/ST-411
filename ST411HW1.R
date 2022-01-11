@@ -1,0 +1,6 @@
+library(Sleuth3) 
+library(ggplot2)
+qplot(Diet, BP, data=ex0112, geom="boxplot")
+with(ex0112, summary(BP[Diet=="FishOil"]))
+with(ex0112, summary(BP[Diet=="RegularOil"]))
+t.test(BP~Diet, data=ex0112, var.equal=TRUE)
